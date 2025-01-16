@@ -45,3 +45,11 @@ footer {
     background-color: #3498db;
     color: #fff;
 }
+/* Şirket isimlerinin görünümünü özelleştirmek için stil */
+.stock-name {
+    background-color: #3498db; /* Mavi arka plan */
+    color: white; /* Beyaz yazı rengi */
+    padding: 5px; /* İç boşluk */
+    border-radius: 5px; /* Köşeleri yuvarlatma */
+    font-weight: bold; /* Yazıyı kalın yapmak */
+}
