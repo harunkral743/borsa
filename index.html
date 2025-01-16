@@ -3,24 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canlı Borsa Haberleri</title>
+    <title>Yüzde Değişim Hesaplama</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Canlı Borsa Haberleri</h1>
+        <h1>Hisse Senedi Yüzde Değişim Hesaplama</h1>
     </header>
 
-    <section id="news">
-        <h2>Bugünün Borsa Haberleri:</h2>
-        <!-- Haberler buraya eklenecek -->
-        <p>Bugün <span class="stock-name">AAPL</span> ve <span class="stock-name">GOOGL</span> hisseleri dikkat çekiyor. <span class="stock-name">AMZN</span> ise %5'lik bir artış gösterdi.</p>
+    <section id="calculator">
+        <h2>Yüzde Değişim Hesaplayın:</h2>
+        
+        <label for="oldPrice">Eski Fiyat:</label>
+        <input type="number" id="oldPrice" placeholder="Eski fiyatı girin">
+
+        <label for="newPrice">Yeni Fiyat:</label>
+        <input type="number" id="newPrice" placeholder="Yeni fiyatı girin">
+
+        <button onclick="calculateChange()">Hesapla</button>
+
+        <p id="result"></p>
     </section>
 
     <footer>
         <p>&copy; 2025 Canlı Borsa Haberleri. Tüm hakları saklıdır.</p>
     </footer>
-    
+
+    <!-- script.js dosyasını body etiketinin sonunda dahil edin -->
     <script src="script.js"></script>
 </body>
 </html>

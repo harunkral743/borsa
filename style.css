@@ -16,40 +16,44 @@ h1 {
     margin: 0;
 }
 
-/* Paragraf stili */
-p {
+/* Calculator bölümü stili */
+#calculator {
     text-align: center;
-    color: #555;
-    font-size: 1.2em;
     margin-top: 20px;
 }
 
-/* Haberler konteyneri */
-.container {
+label {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    font-size: 1em;
+    padding: 10px;
+    margin-bottom: 15px;
     width: 80%;
-    margin: 0 auto;
-}
-
-/* Haber kartı stili */
-.news-article {
+    border-radius: 5px;
     border: 1px solid #ddd;
-    padding: 15px;
-    margin-bottom: 10px;
-    background-color: #ffffff;
 }
 
-/* Footer stili */
-footer {
-    text-align: center;
-    padding: 20px;
+button {
+    font-size: 1.2em;
+    padding: 10px 20px;
     background-color: #3498db;
-    color: #fff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-/* Şirket isimlerinin görünümünü özelleştirmek için stil */
-.stock-name {
-    background-color: #3498db; /* Mavi arka plan */
-    color: white; /* Beyaz yazı rengi */
-    padding: 5px; /* İç boşluk */
-    border-radius: 5px; /* Köşeleri yuvarlatma */
-    font-weight: bold; /* Yazıyı kalın yapmak */
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Sonuç stili */
+#result {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
 }
