@@ -6,7 +6,10 @@ function calculateChange() {
 
     // Geçerli olup olmadığını kontrol et
     if (isNaN(oldPrice) || isNaN(newPrice)) {
-        document.getElementById('result').innerHTML = "Lütfen geçerli fiyatlar girin.";
+        // Hata mesajı
+        var resultElement = document.getElementById('result');
+        resultElement.innerHTML = "Lütfen geçerli fiyatlar girin.";
+        resultElement.style.color = "red";  // Hata mesajı için kırmızı renk
         return;
     }
 
@@ -14,5 +17,7 @@ function calculateChange() {
     var change = ((newPrice - oldPrice) / oldPrice) * 100;
 
     // Sonucu ekranda göster
-    document.getElementById('result').innerHTML = "Yüzde Değişim: " + change.toFixed(2) + "%";
+    var resultElement = document.getElementById('result');
+    resultElement.innerHTML = "Yüzde Değişim: " + change.toFixed(2) + "%";
+    resultElement.style.color = "green";  // Başarılı hesaplama için yeşil renk
 }
