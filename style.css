@@ -1,0 +1,43 @@
+/* Genel sayfa düzeni */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+/* Başlık stili */
+h1 {
+    text-align: center;
+    color: #333;
+    background-color: #3498db;
+    padding: 20px;
+    margin: 0;
+}
+
+/* Paragraf stili */
+p {
+    text-align: center;
+    color: #555;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+body {
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    color: #007bff;
+}
+
+.news-article {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+}
