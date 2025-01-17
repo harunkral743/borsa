@@ -5,6 +5,8 @@ body {
     color: white;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 /* Başlık Stili */
@@ -17,6 +19,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 15px; /* Başlık ve Google Translate butonu arasındaki boşluk */
+    width: 100%;
 }
 
 /* Google Translate Butonu */
@@ -24,15 +27,58 @@ header {
     display: inline-block;
 }
 
-/* Haber Alanı */
+/* **Haber Alanı - Ortalanmış ve Yanlarda 5cm Lacivert Boşluk Bırakılmış** */
 #news-feed {
     margin: 20px auto;
-    width: calc(100vw - 10cm); /* Sayfanın genişliğini al, sağdan ve soldan 5cm boşluk bırak */
-    max-width: 1200px; /* Çok geniş ekranlarda maksimum genişlik belirleyelim */
-    min-width: 600px; /* Küçük ekranlarda bozulmaması için minimum genişlik */
+    width: calc(100% - 10cm); /* Sayfanın genişliğinden sağdan ve soldan 5cm boşluk bırak */
+    max-width: 1200px; /* Büyük ekranlarda fazla büyümemesi için */
+    min-width: 600px; /* Küçük ekranlarda düzgün görüntülenmesi için */
     padding: 20px;
     background-color: white;
     color: black;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+/* Haber Kartları */
+.news-item {
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Son haberde alt çizgi olmaması için */
+.news-item:last-child {
+    border-bottom: none;
+}
+
+/* Olumlu ve Negatif Etiketleri */
+.positive {
+    background-color: #27ae60;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.negative {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Link Stili */
+a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }
