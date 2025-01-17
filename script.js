@@ -14,24 +14,20 @@ async function fetchNews() {
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
 
-            // Pozitif ve negatif içerik varsa ekle
-            let positiveContent = news.news.positive || "Pozitif içerik bulunmamaktadır.";
-            let negativeContent = news.news.negative || "Negatif içerik bulunmamaktadır.";
+            // Olumlu & Negatif verileri al
+            const positive = news.news.positive || "Pozitif veri bulunmuyor.";
+            const negative = news.news.negative || "Negatif veri bulunmuyor.";
 
             // Haber içeriğini ekle
             newsItem.innerHTML = `
                 <h3>${news.news.title}</h3>
                 <p>${news.news.summary}</p>
-                <p class="news-date">${formatDate(news.news.date)}</p>
-
-                <div class="analysis-box">
-                    <h4>Pozitif Sonuçlar</h4>
-                    <p class="positive">${positiveContent}</p>
-                </div>
-
-                <div class="analysis-box">
-                    <h4>Negatif Sonuçlar</h4>
-                    <p class="negative">${negativeContent}</p>
+                <p>${formatDate(news.news.date)}</p>
+                
+                <!-- Olumlu ve Negatif Sonuçlar -->
+                <div class="positive-negative-container">
+                    <p><span class="positive">Olumlu: </span> ${positive}</p>
+                    <p><span class="negative">Negatif: </span> ${negative}</p>
                 </div>
             `;
 
@@ -43,11 +39,11 @@ async function fetchNews() {
     }
 }
 
-// **Eksik olan formatDate fonksiyonunu ekliyoruz**
+// Tarihi 'Gün/Ay/Yıl' formatına dönüştürme fonksiyonu
 function formatDate(timestamp) {
     const date = new Date(timestamp);
     const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Aylar 0'dan başlar, bu yüzden +1
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Aylar 0'dan başlar, +1 eklenmeli
     const year = date.getFullYear();
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
