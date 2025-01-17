@@ -9,6 +9,8 @@
 <body>
     <header>
         <h1>Borsa Haberleri</h1>
+        <!-- Google Translate Alanı -->
+        <div id="google_translate_element"></div>
     </header>
 
     <section id="news-feed">
@@ -16,5 +18,16 @@
     </section>
 
     <script src="script.js"></script>
+
+    <!-- Google Çeviri API -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
