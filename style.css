@@ -68,3 +68,20 @@ a {
 a:hover {
     text-decoration: underline;
 }
+/* Başlık Stili */
+header {
+    background-color: #000066;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Başlık ve Çeviri butonu arasına boşluk ekler */
+}
+
+/* Google Çeviri Butonu Stili */
+#google_translate_element {
+    display: inline-block;
+    font-size: 14px;
+}
