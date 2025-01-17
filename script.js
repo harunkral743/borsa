@@ -1,56 +1,66 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("JavaScript dosyası başarıyla yüklendi.");
+// 📌 Stock Titan API URL ve Token
+const apiToken = "nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
+const apiUrl = `https://stocktitan.net:11101/api/news/json?token=${apiToken}`;
 
-    const apiUrl = "https://stocktitan.net:11101/api/news/json?token=nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
-    const newsFeed = document.getElementById("news-feed");
+// 📌 Filtreleme Kriterleri (Senin istediğin kriterlere göre)
+const allowedCompanies = ["NVIDIA", "TESLA", "SPACEX", "AMAZON", "GOOGL", "META", "APPLE", "AMD"];
+const importantKeywords = ["acquisition", "merger", "buys", "purchase", "breakthrough", "robotic", "AI", "quantum"];
+const excludedTags = ["OTC"];
 
-    // Tarihi Gün/Ay/Yıl formatına çevirme fonksiyonu
-    function formatDate(timestamp) {
-        const date = new Date(timestamp);
-        const day = String(date.getDate()).padStart(2, "0");
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const year = date.getFullYear();
-        const hours = String(date.getHours()).padStart(2, "0");
-        const minutes = String(date.getMinutes()).padStart(2, "0");
+// 📌 API'den Haber Çekme Fonksiyonu
+async function fetchNews() {
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-        return `${day}/${month}/${year} ${hours}:${minutes}`;
-    }
+        // 📌 Haberleri Filtreleme ve Ekrana Ekleme
+        const newsFeed = document.getElementById("news-feed");
+        newsFeed.innerHTML = ""; // Önce temizleyelim
 
-    // API'den haberleri çekme fonksiyonu
-    async function fetchNews() {
-        try {
-            const response = await fetch(apiUrl);
-            const newsData = await response.json();
+        data.forEach(news => {
+            // Haber başlığı ve özetini al
+            const title = news.news.title || "";
+            const summary = news.news.summary || "";
+            const tag = news.news.tag || "";
+            const symbol = news.news.symbol || "";
+            const date = new Date(news.news.date);
 
-            newsFeed.innerHTML = ""; // Önceki haberleri temizle
+            // Tarihi Gün/Ay/Yıl formatına çevir
+            const formattedDate = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
 
-            newsData.forEach(news => {
+            // 📌 İstenmeyen tag'leri filtrele (Örneğin OTC haberleri)
+            if (excludedTags.includes(tag)) return;
+
+            // 📌 Önemli anahtar kelimeleri kontrol et
+            let isImportant = importantKeywords.some(keyword => title.toLowerCase().includes(keyword) || summary.toLowerCase().includes(keyword));
+
+            // 📌 Şirket adı kontrolü
+            let isRelevantCompany = allowedCompanies.some(company => title.includes(company) || summary.includes(company));
+
+            // 📌 Eğer haber önemliyse veya belirttiğin şirketler geçiyorsa göster
+            if (isImportant || isRelevantCompany) {
+                // 📌 Haber Kartı Oluştur
                 const newsItem = document.createElement("div");
                 newsItem.classList.add("news-item");
 
-                // Haber içeriğini ekle
+                // 📌 ÖNEMLİ etiketi ekleyelim
+                const importantTag = isImportant ? `<span class="important">ÖNEMLİ!</span> ` : "";
+
                 newsItem.innerHTML = `
-                    <h3>${news.news.title}</h3>
-                    <p><strong>Tarih:</strong> ${formatDate(news.news.date)}</p>
-                    <p><strong>Şirket:</strong> ${news.news.symbol} (${news.news.exchange})</p>
-                    <p><strong>Kategori:</strong> ${news.news.tag}</p>
-                    <p><strong>Özet:</strong> ${news.news.summary}</p>
+                    <h3>${importantTag}${title}</h3>
+                    <p>${summary}</p>
+                    <p class="news-date">${formattedDate}</p>
                     <a href="${news.news.url}" target="_blank">Haberi Oku</a>
                 `;
 
+                // 📌 Haber Kartını Ekle
                 newsFeed.appendChild(newsItem);
-            });
-
-            console.log("Haberler başarıyla yüklendi.");
-        } catch (error) {
-            console.error("Haberler yüklenirken hata oluştu:", error);
-            newsFeed.innerHTML = "<p>Haberler yüklenirken bir hata oluştu.</p>";
-        }
+            }
+        });
+    } catch (error) {
+        console.error("Haberleri çekerken hata oluştu:", error);
     }
+}
 
-    // İlk haberleri yükle
-    fetchNews();
-
-    // Her 15 saniyede bir güncelle
-    setInterval(fetchNews, 15000);
-});
+// 📌 Sayfa Yüklendiğinde Haberleri Çek
+window.onload = fetchNews;
