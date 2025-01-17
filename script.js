@@ -10,6 +10,14 @@ async function fetchNews() {
         newsFeed.innerHTML = ""; // Önceki haberleri temizle
 
         data.forEach(news => {
+            // Olumlu veya negatif haberleri belirleme
+            let sentimentClass = "";
+            if (news.news.tag === "positive") {
+                sentimentClass = "positive";
+            } else if (news.news.tag === "negative") {
+                sentimentClass = "negative";
+            }
+
             // Yeni haber elemanı oluştur
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
@@ -18,7 +26,8 @@ async function fetchNews() {
             newsItem.innerHTML = `
                 <h3>${news.news.title}</h3>
                 <p>${news.news.summary}</p>
-                <p>${formatDate(news.news.date)}</p>
+                <p class="news-date">${formatDate(news.news.date)}</p>
+                <p class="${sentimentClass}">${news.news.tag}</p>
                 <a href="${news.news.url}" target="_blank">Haberi Oku</a>
             `;
 
@@ -28,6 +37,18 @@ async function fetchNews() {
     } catch (error) {
         console.error("Haberleri çekerken hata oluştu:", error);
     }
+}
+
+// Tarih formatını Gün/Ay/Yıl olarak düzenleme
+function formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+
+    return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
 // Sayfa yüklendiğinde haberleri çek
