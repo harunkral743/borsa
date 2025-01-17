@@ -90,3 +90,13 @@ a {
 a:hover {
     text-decoration: underline;
 }
+/* Google Translate çeviri kutusunu kaldır */
+.goog-tooltip, .goog-tooltip:hover {
+    display: none !important;
+}
+
+/* Seçilen metinlerde çıkan çeviri kutusunu kaldır */
+.goog-text-highlight {
+    background: none !important;
+    box-shadow: none !important;
+}
