@@ -1,7 +1,7 @@
 /* Genel Sayfa Stili */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0A0A5A; /* StockTitan'ın lacivert tonu */
+    background-color: #0A0A5A; /* StockTitan'a uygun koyu lacivert */
     color: white;
     margin: 0;
     padding: 0;
@@ -18,7 +18,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* Başlık ve Google Translate butonu arasındaki boşluk */
+    gap: 15px;
     width: 100%;
 }
 
@@ -27,7 +27,7 @@ header {
     display: inline-block;
 }
 
-/* **Haber Alanı - Ortalanmış ve Yanlarda 5cm Lacivert Boşluk Bırakılmış** */
+/* Haber Alanı */
 #news-feed {
     margin: 20px auto;
     width: calc(100% - 10cm); /* Sayfanın genişliğinden sağdan ve soldan 5cm boşluk bırak */
@@ -37,7 +37,6 @@ header {
     background-color: white;
     color: black;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
 }
 
@@ -50,14 +49,15 @@ header {
     position: relative;
 }
 
-/* **Haberler Arasına Lacivert Çizgi Ekleme (Yatay Çizgi)** */
+/* **Haberler Arasına Lacivert Çizgi Ekleme (Doğru Konumda)** */
 .news-item:not(:last-child)::after {
     content: "";
     display: block;
     width: 100%;
-    height: 4px; /* Çizgi Kalınlığı */
+    height: 3px; /* Çizgi Kalınlığı */
     background-color: #0A0A5A; /* Lacivert Renk */
-    margin: 20px 0;
+    margin-top: 10px;
+    margin-bottom: 15px; /* Çizginin "Haberi Oku" ile altındaki haber arasındaki boşluk */
 }
 
 /* Olumlu ve Negatif Etiketleri */
