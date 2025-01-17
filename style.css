@@ -1,7 +1,7 @@
 /* Genel Sayfa Stili */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0A0A5A; /* StockTitan'a uygun koyu lacivert */
+    background-color: #0A0A5A; /* StockTitan'ın lacivert tonu */
     color: white;
     margin: 0;
     padding: 0;
@@ -50,11 +50,14 @@ header {
     position: relative;
 }
 
-/* **Haberler Arasına Lacivert Çizgi** */
-.news-item:not(:last-child) {
-    border-bottom: 3px solid #0A0A5A; /* Lacivert çizgi */
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+/* **Haberler Arasına Lacivert Çizgi Ekleme (Yatay Çizgi)** */
+.news-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 4px; /* Çizgi Kalınlığı */
+    background-color: #0A0A5A; /* Lacivert Renk */
+    margin: 20px 0;
 }
 
 /* Olumlu ve Negatif Etiketleri */
