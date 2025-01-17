@@ -6,35 +6,37 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    flex-direction: column; /* Üstten aşağıya sıralama */
-    align-items: center; /* Tüm içeriği ortalar */
-    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Başlık Stili */
+/* **Başlık Stili (Sabit Üstte) ** */
 header {
     background-color: #000066;
     color: white;
     text-align: center;
     padding: 20px 0;
     width: 100%;
-    position: fixed; /* Başlığı en üste sabitler */
+    position: fixed; /* Başlığı sabit yap */
     top: 0;
     left: 0;
     z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Google Translate Butonu */
+/* **Google Translate Butonu (Yanına) ** */
 #google_translate_element {
     display: inline-block;
-    margin-left: 20px; /* Butonun başlık ile arasına boşluk ekler */
+    margin-left: 20px;
 }
 
 /* **Haber Alanı (Tam Ortaya Getirildi)** */
 #news-feed {
     margin: 100px auto 20px auto; /* Başlık sabitlendiği için üst boşluk artırıldı */
-    width: 90%; /* Sayfanın %90'ını kaplar */
-    max-width: 1200px; /* Çok büyük ekranlarda en fazla 1200px genişler */
+    width: calc(100% - 10cm); /* Sağdan ve soldan 5cm boşluk bırakır */
+    max-width: 1200px; /* Büyük ekranlarda maksimum genişlik */
     padding: 20px;
     background-color: white;
     color: black;
@@ -43,18 +45,18 @@ header {
     text-align: left;
 }
 
-/* **Haber Kartları ve Çizgi (Net Ayrılmış)** */
+/* **Haberler Arası Lacivert Çizgi** */
 .news-item {
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    margin-bottom: 30px; /* Haberler arasında geniş boşluk */
-    border: 3px solid #0A0A5A; /* Lacivert çerçeve */
+    margin-bottom: 20px;
+    border: 3px solid #0A0A5A;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
 
-/* **Haberler Arasında Lacivert Çizgi (Tam Ortalanmış)** */
+/* **Her Haber Arasına Kalın Lacivert Çizgi (Tam Ortalanmış) ** */
 .news-item:not(:last-child) {
     border-bottom: 5px solid #0A0A5A; /* Kalın lacivert çizgi */
     padding-bottom: 20px;
