@@ -6,7 +6,9 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Ortalamayı sağlar */
+    align-items: flex-start;
+    min-height: 100vh;
 }
 
 /* Başlık Stili */
@@ -27,33 +29,34 @@ header {
     display: inline-block;
 }
 
-/* Haber Alanı */
+/* **Haber Alanı (Tam Ortaya Getirildi)** */
 #news-feed {
     margin: 20px auto;
-    width: calc(100% - 10cm); /* Sayfanın genişliğinden sağdan ve soldan 5cm boşluk bırak */
-    max-width: 1200px;
-    min-width: 600px;
+    width: 90%; /* Sayfanın %90'ını kaplasın */
+    max-width: 1200px; /* Çok büyük ekranlarda maksimum genişlik */
+    min-width: 600px; /* Küçük ekranlarda daralmayı önler */
     padding: 20px;
     background-color: white;
     color: black;
     border-radius: 8px;
     box-sizing: border-box;
+    text-align: left;
 }
 
-/* **Haber Kartlarını Net Bir Şekilde Ayırma (Çerçeve ve Boşluk)** */
+/* **Haber Kartları ve Çizgi (Net Ayrılmış)** */
 .news-item {
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    margin-bottom: 20px; /* Haberler arasında geniş boşluk bırak */
-    border: 3px solid #0A0A5A; /* Lacivert çerçeve ile haberleri belirgin hale getir */
+    margin-bottom: 30px; /* Haberler arasında geniş boşluk */
+    border: 3px solid #0A0A5A; /* Lacivert çerçeve */
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
 }
 
-/* **Haberler Arasında Lacivert Çizgi** */
+/* **Haberler Arasında Lacivert Çizgi (Tam Ortalanmış)** */
 .news-item:not(:last-child) {
-    border-bottom: 5px solid #0A0A5A; /* Haberleri net şekilde ayıran kalın lacivert çizgi */
+    border-bottom: 5px solid #0A0A5A; /* Kalın lacivert çizgi */
     padding-bottom: 20px;
     margin-bottom: 30px;
 }
