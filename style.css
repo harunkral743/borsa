@@ -27,52 +27,12 @@ header {
 /* Haber Alanı */
 #news-feed {
     margin: 20px auto;
-    max-width: calc(100vw - 10cm); /* Sayfanın genişliğinden sağdan ve soldan 5cm boşluk bırak */
-    min-width: 600px; /* Çok küçük ekranlarda bile düzgün görünmesi için min-width belirledik */
+    width: calc(100vw - 10cm); /* Sayfanın genişliğini al, sağdan ve soldan 5cm boşluk bırak */
+    max-width: 1200px; /* Çok geniş ekranlarda maksimum genişlik belirleyelim */
+    min-width: 600px; /* Küçük ekranlarda bozulmaması için minimum genişlik */
     padding: 20px;
     background-color: white;
     color: black;
     border-radius: 8px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Haber Kartları */
-.news-item {
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-.news-item:last-child {
-    border-bottom: none;
-}
-
-/* Olumlu ve Negatif Etiketleri */
-.positive {
-    background-color: #27ae60;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-.negative {
-    background-color: #e74c3c;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-/* Link Stili */
-a {
-    color: blue;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
 }
