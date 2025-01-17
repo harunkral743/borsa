@@ -61,3 +61,13 @@ footer {
     font-weight: bold;
     border-radius: 4px;
 }
+#google_translate_element {
+    text-align: right;
+    margin: 10px;
+}
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
