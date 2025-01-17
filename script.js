@@ -32,26 +32,3 @@ async function fetchNews() {
 
 // Sayfa yüklendiğinde haberleri çek
 fetchNews();
-data.forEach(news => {
-    const newsItem = document.createElement("div");
-    newsItem.classList.add("news-item");
-
-    // "Olumlu" ve "Negatif" bilgileri için değişkenler
-    let sentiment = "";
-    if (news.news.tag.includes("positive")) {
-        sentiment = `<span class="positive">Olumlu</span>`;
-    } else if (news.news.tag.includes("negative")) {
-        sentiment = `<span class="negative">Negatif</span>`;
-    }
-
-    // Haber içeriğini ekle
-    newsItem.innerHTML = `
-        <h3>${news.news.title}</h3>
-        <p>${news.news.summary}</p>
-        ${sentiment}
-        <p>${formatDate(news.news.date)}</p>
-        <a href="${news.news.url}" target="_blank">Haberi Oku</a>
-    `;
-
-    newsFeed.appendChild(newsItem);
-});

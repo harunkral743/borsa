@@ -1,76 +1,47 @@
-/* Genel Ayarlar */
+/* Genel Sayfa Stili */
 body {
-    background-color: #000080; /* Koyu lacivert arka plan rengi */
-    color: #ffffff; /* Yazı rengini beyaz yaparak kontrast sağlayalım */
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #0A0A5A; /* StockTitan'a uygun koyu lacivert */
+    color: white;
     margin: 0;
     padding: 0;
 }
 
 /* Başlık Stili */
 header {
-    background-color: #000080; /* Başlık arka planı da aynı renk */
-    color: #ffffff; /* Başlık metni beyaz */
+    background-color: #000066;
+    color: white;
     text-align: center;
     padding: 20px 0;
 }
 
 header h1 {
-    font-size: 2em;
     margin: 0;
 }
 
-/* Haber Akışı Alanı */
-#news-feed {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #ffffff; /* Haber akışı arka planı beyaz */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Haber Kartları */
-.news-item {
-    background-color: #f4f4f9; /* Haber kartları için hafif gri arka plan */
-    color: #000080; /* Metin rengi koyu lacivert */
-    border: 1px solid #000080;
+#news-feed {
+    margin: 20px auto;
+    max-width: 800px;
+    padding: 10px;
+    background-color: white;
+    color: black;
     border-radius: 8px;
+}
+
+.news-item {
     padding: 15px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
     margin-bottom: 10px;
-    transition: background 0.3s;
 }
 
-.news-item:hover {
-    background-color: #e0e0e0; /* Hover durumunda daha açık gri arka plan */
+.news-item:last-child {
+    border-bottom: none;
 }
 
-/* Footer */
-footer {
-    background-color: #000080;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    margin-top: 20px;
-    font-size: 0.9em;
-}
-.important {
-    background-color: red;
-    color: white;
-    padding: 3px 8px;
-    font-weight: bold;
-    border-radius: 4px;
-}
-#google_translate_element {
-    text-align: right;
-    margin: 10px;
-}
-.goog-te-banner-frame.skiptranslate {
-    display: none !important;
-}
-body {
-    top: 0px !important;
-}
+/* Olumlu ve Negatif Etiketleri */
 .positive {
     background-color: #27ae60; /* Yeşil */
     color: white;
@@ -85,4 +56,15 @@ body {
     padding: 5px;
     border-radius: 5px;
     font-weight: bold;
+}
+
+/* Link Stili */
+a {
+    color: blue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }
