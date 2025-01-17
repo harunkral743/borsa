@@ -30,7 +30,7 @@ async function fetchNews() {
     }
 }
 
-// **Eksik olan formatDate fonksiyonunu ekliyoruz**
+// Tarih formatlama fonksiyonu (Eksik olanı ekledim)
 function formatDate(timestamp) {
     const date = new Date(timestamp);
     const day = String(date.getDate()).padStart(2, "0");

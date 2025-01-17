@@ -12,7 +12,7 @@ header {
     background-color: #000066;
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -27,11 +27,13 @@ header {
 /* Haber Alanı */
 #news-feed {
     margin: 20px auto;
-    width: calc(100% - 10cm); /* Sayfanın toplam genişliğinden sağdan ve soldan 5cm boşluk bırakır */
+    max-width: calc(100vw - 10cm); /* Sayfanın genişliğinden sağdan ve soldan 5cm boşluk bırak */
+    min-width: 600px; /* Çok küçük ekranlarda bile düzgün görünmesi için min-width belirledik */
     padding: 20px;
     background-color: white;
     color: black;
     border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Haber Kartları */
