@@ -13,22 +13,28 @@ header {
     color: white;
     text-align: center;
     padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Başlık ve Google Translate butonu arasındaki boşluk */
 }
 
-header h1 {
-    margin: 0;
+/* Google Translate Butonu */
+#google_translate_element {
+    display: inline-block;
 }
 
-/* Haber Kartları */
+/* Haber Alanı */
 #news-feed {
     margin: 20px auto;
-    max-width: 800px;
-    padding: 10px;
+    width: calc(100% - 10cm); /* Sayfanın toplam genişliğinden sağdan ve soldan 5cm boşluk bırakır */
+    padding: 20px;
     background-color: white;
     color: black;
     border-radius: 8px;
 }
 
+/* Haber Kartları */
 .news-item {
     padding: 15px;
     border-bottom: 1px solid #ddd;
@@ -43,7 +49,7 @@ header h1 {
 
 /* Olumlu ve Negatif Etiketleri */
 .positive {
-    background-color: #27ae60; /* Yeşil */
+    background-color: #27ae60;
     color: white;
     padding: 5px;
     border-radius: 5px;
@@ -51,7 +57,7 @@ header h1 {
 }
 
 .negative {
-    background-color: #e74c3c; /* Kırmızı */
+    background-color: #e74c3c;
     color: white;
     padding: 5px;
     border-radius: 5px;
@@ -67,21 +73,4 @@ a {
 
 a:hover {
     text-decoration: underline;
-}
-/* Başlık Stili */
-header {
-    background-color: #000066;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* Başlık ve Çeviri butonu arasına boşluk ekler */
-}
-
-/* Google Çeviri Butonu Stili */
-#google_translate_element {
-    display: inline-block;
-    font-size: 14px;
 }

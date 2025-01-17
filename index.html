@@ -8,11 +8,12 @@
 </head>
 <body>
     <header>
-        <h1>Borsa Haberleri <span id="google_translate_element"></span></h1>
+        <h1>Borsa Haberleri</h1>
+        <div id="google_translate_element"></div>
     </header>
 
     <section id="news-feed">
-        <!-- Haberler buraya yüklenecek -->
+        <!-- Haberler buraya yüklenecek --> 
     </section>
 
     <script src="script.js"></script>
@@ -20,12 +21,9 @@
     <!-- Google Çeviri API -->
     <script type="text/javascript">
         function googleTranslateElementInit() {
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE},
-                'google_translate_element'
-            );
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
         }
     </script>
-    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
