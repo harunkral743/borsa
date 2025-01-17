@@ -14,12 +14,25 @@ async function fetchNews() {
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
 
+            // Pozitif ve negatif içerik varsa ekle
+            let positiveContent = news.news.positive || "Pozitif içerik bulunmamaktadır.";
+            let negativeContent = news.news.negative || "Negatif içerik bulunmamaktadır.";
+
             // Haber içeriğini ekle
             newsItem.innerHTML = `
                 <h3>${news.news.title}</h3>
                 <p>${news.news.summary}</p>
-                <p>${formatDate(news.news.date)}</p>
-                <a href="${news.news.url}" target="_blank">Haberi Oku</a>
+                <p class="news-date">${formatDate(news.news.date)}</p>
+
+                <div class="analysis-box">
+                    <h4>Pozitif Sonuçlar</h4>
+                    <p class="positive">${positiveContent}</p>
+                </div>
+
+                <div class="analysis-box">
+                    <h4>Negatif Sonuçlar</h4>
+                    <p class="negative">${negativeContent}</p>
+                </div>
             `;
 
             // Haber elemanını haber akışına ekle
@@ -30,7 +43,7 @@ async function fetchNews() {
     }
 }
 
-// Tarih formatlama fonksiyonu (Eksik olanı ekledim)
+// **Eksik olan formatDate fonksiyonunu ekliyoruz**
 function formatDate(timestamp) {
     const date = new Date(timestamp);
     const day = String(date.getDate()).padStart(2, "0");

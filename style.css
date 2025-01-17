@@ -1,102 +1,19 @@
-/* Genel Sayfa Stili */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #0A0A5A; /* StockTitan'ın koyu lacivert rengi */
-    color: white;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* **Başlık Stili (Sabit Üstte) ** */
-header {
-    background-color: #000066;
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    width: 100%;
-    position: fixed; /* Başlığı sabit yap */
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* **Google Translate Butonu (Yanına) ** */
-#google_translate_element {
-    display: inline-block;
-    margin-left: 20px;
-}
-
-/* **Haber Alanı (Tam Ortaya Getirildi)** */
-#news-feed {
-    margin: 100px auto 20px auto; /* Başlık sabitlendiği için üst boşluk artırıldı */
-    width: calc(100% - 10cm); /* Sağdan ve soldan 5cm boşluk bırakır */
-    max-width: 1200px; /* Büyük ekranlarda maksimum genişlik */
-    padding: 20px;
-    background-color: white;
-    color: black;
-    border-radius: 8px;
-    box-sizing: border-box;
-    text-align: left;
-}
-
-/* **Haberler Arası Lacivert Çizgi** */
-.news-item {
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border: 3px solid #0A0A5A;
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-}
-
-/* **Her Haber Arasına Kalın Lacivert Çizgi (Tam Ortalanmış) ** */
-.news-item:not(:last-child) {
-    border-bottom: 5px solid #0A0A5A; /* Kalın lacivert çizgi */
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-}
-
-/* Olumlu ve Negatif Etiketleri */
-.positive {
-    background-color: #27ae60;
-    color: white;
-    padding: 5px;
+/* Pozitif ve Negatif Sonuç Çerçevesi */
+.analysis-box {
+    margin-top: 10px;
+    padding: 10px;
+    border: 2px solid #ddd;
     border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Pozitif ve Negatif İçerik Stili */
+.positive {
+    color: #27ae60; /* Yeşil */
     font-weight: bold;
 }
 
 .negative {
-    background-color: #e74c3c;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
+    color: #e74c3c; /* Kırmızı */
     font-weight: bold;
-}
-
-/* Link Stili */
-a {
-    color: blue;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-/* Google Translate çeviri kutusunu kaldır */
-.goog-tooltip, .goog-tooltip:hover {
-    display: none !important;
-}
-
-/* Seçilen metinlerde çıkan çeviri kutusunu kaldır */
-.goog-text-highlight {
-    background: none !important;
-    box-shadow: none !important;
 }
