@@ -71,3 +71,18 @@ footer {
 body {
     top: 0px !important;
 }
+.positive {
+    background-color: #27ae60; /* Yeşil */
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.negative {
+    background-color: #e74c3c; /* Kırmızı */
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
