@@ -31,8 +31,8 @@ header {
 #news-feed {
     margin: 20px auto;
     width: calc(100% - 10cm); /* Sayfanın genişliğinden sağdan ve soldan 5cm boşluk bırak */
-    max-width: 1200px; /* Büyük ekranlarda fazla büyümemesi için */
-    min-width: 600px; /* Küçük ekranlarda düzgün görüntülenmesi için */
+    max-width: 1200px;
+    min-width: 600px;
     padding: 20px;
     background-color: white;
     color: black;
@@ -44,15 +44,17 @@ header {
 /* Haber Kartları */
 .news-item {
     padding: 15px;
-    border-bottom: 1px solid #ddd;
     background-color: #f9f9f9;
     border-radius: 8px;
     margin-bottom: 10px;
+    position: relative;
 }
 
-/* Son haberde alt çizgi olmaması için */
-.news-item:last-child {
-    border-bottom: none;
+/* **Haberler Arasına Lacivert Çizgi** */
+.news-item:not(:last-child) {
+    border-bottom: 3px solid #0A0A5A; /* Lacivert çizgi */
+    padding-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 /* Olumlu ve Negatif Etiketleri */
