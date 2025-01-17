@@ -40,24 +40,22 @@ header {
     box-sizing: border-box;
 }
 
-/* Haber Kartları */
+/* **Haber Kartlarını Net Bir Şekilde Ayırma (Çerçeve ve Boşluk)** */
 .news-item {
     padding: 15px;
     background-color: #f9f9f9;
     border-radius: 8px;
-    margin-bottom: 10px;
-    position: relative;
+    margin-bottom: 20px; /* Haberler arasında geniş boşluk bırak */
+    border: 3px solid #0A0A5A; /* Lacivert çerçeve ile haberleri belirgin hale getir */
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
-/* **Haberler Arasına Lacivert Çizgi Ekleme (Doğru Konumda)** */
-.news-item:not(:last-child)::after {
-    content: "";
-    display: block;
-    width: 100%;
-    height: 3px; /* Çizgi Kalınlığı */
-    background-color: #0A0A5A; /* Lacivert Renk */
-    margin-top: 10px;
-    margin-bottom: 15px; /* Çizginin "Haberi Oku" ile altındaki haber arasındaki boşluk */
+/* **Haberler Arasında Lacivert Çizgi** */
+.news-item:not(:last-child) {
+    border-bottom: 5px solid #0A0A5A; /* Haberleri net şekilde ayıran kalın lacivert çizgi */
+    padding-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 /* Olumlu ve Negatif Etiketleri */
