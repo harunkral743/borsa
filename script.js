@@ -1,59 +1,56 @@
-// Haberleri StockTitan API'den çek
-async function fetchNews() {
-    const apiUrl = "https://stocktitan.net:11101/api/news/json?token=nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
+async function fetchStockPrice(symbol) {
+    const yahooFinanceAPI = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?region=US&lang=en-US&includePrePost=false&interval=1m&range=1d`;
+    const alphaVantageAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=DEMO_KEY`;
+    const polygonAPI = `https://api.polygon.io/v2/aggs/ticker/${symbol}/prev?apiKey=DEMO_KEY`;
 
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        
-        const newsFeed = document.getElementById("news-feed");
-        newsFeed.innerHTML = ""; // Önceki haberleri temizle
+    const fetchFromAPI = async (url, source) => {
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (data && Object.keys(data).length > 0) {
+                return { data, source };
+            }
+            throw new Error("Geçersiz veri");
+        } catch (error) {
+            console.error(`API Hatası - ${source}:`, error);
+            return null;
+        }
+    };
 
-        data.forEach(news => {
-            // Yeni haber elemanı oluştur
-            const newsItem = document.createElement("div");
-            newsItem.classList.add("news-item");
+    // API çağrılarını paralel olarak başlat
+    const responses = await Promise.allSettled([
+        fetchFromAPI(yahooFinanceAPI, "Yahoo Finance"),
+        fetchFromAPI(alphaVantageAPI, "Alpha Vantage"),
+        fetchFromAPI(polygonAPI, "Polygon.io")
+    ]);
 
-            // Olumlu ve Negatif içerikleri belirle
-            const positiveContent = news.news.positive_content || "No positive content available.";
-            const negativeContent = news.news.negative_content || "No negative content available.";
-
-            // Haber içeriğini ekle
-            newsItem.innerHTML = `
-                <h3>${news.news.title}</h3>
-                <p>${news.news.summary}</p>
-                <p>${formatDate(news.news.date)}</p>
-
-                <!-- Olumlu ve Negatif Sonuçları Yan Yana Yerleştir -->
-                <div class="positive-negative-container">
-                    <div class="positive">
-                        <strong>Positive:</strong> ${positiveContent}
-                    </div>
-                    <div class="negative">
-                        <strong>Negative:</strong> ${negativeContent}
-                    </div>
-                </div>
-            `;
-
-            // Haber elemanını haber akışına ekle
-            newsFeed.appendChild(newsItem);
-        });
-    } catch (error) {
-        console.error("Haberleri çekerken hata oluştu:", error);
+    // En hızlı dönen ve geçerli veriye sahip olanı seç
+    for (const result of responses) {
+        if (result.status === "fulfilled" && result.value !== null) {
+            console.log(`Hisse Fiyatı ${result.value.source} API'den alındı.`);
+            return parseStockPrice(result.value);
+        }
     }
+
+    console.error("Hisse fiyatı için geçerli bir veri bulunamadı.");
+    return null;
 }
 
-// **Eksik olan formatDate fonksiyonunu ekliyoruz**
-function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Aylar 0'dan başlar, bu yüzden +1
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-
-    return `${day}/${month}/${year} ${hours}:${minutes}`;
+// API'den gelen veriyi işleyerek hisse fiyatını çıkarma fonksiyonu
+function parseStockPrice(response) {
+    if (response.source === "Yahoo Finance") {
+        return response.data.chart.result[0].meta.regularMarketPrice;
+    } else if (response.source === "Alpha Vantage") {
+        return parseFloat(response.data["Global Quote"]["05. price"]);
+    } else if (response.source === "Polygon.io") {
+        return response.data.results[0].c;
+    }
+    return null;
 }
 
-// Sayfa yüklendiğinde haberleri çek
-fetchNews();
+// Örnek kullanım
+fetchStockPrice("AAPL").then(price => {
+    if (price !== null) {
+        console.log(`Apple'ın Güncel Hisse Fiyatı: $${price}`);
+    }
+});
