@@ -1,4 +1,4 @@
-// Haberleri StockTitan API'den çek
+// Fetch news from StockTitan API
 async function fetchNews() {
     const apiUrl = "https://stocktitan.net:11101/api/news/json?token=nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
 
@@ -7,43 +7,39 @@ async function fetchNews() {
         const data = await response.json();
         
         const newsFeed = document.getElementById("news-feed");
-        newsFeed.innerHTML = ""; // Önceki haberleri temizle
+        newsFeed.innerHTML = ""; // Clear previous news
 
         data.forEach(news => {
-            // Yeni haber elemanı oluştur
+            // Create a news element
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
 
-            // Olumlu & Negatif verileri al
-            const positive = news.news.positive || "Pozitif veri bulunmuyor.";
-            const negative = news.news.negative || "Negatif veri bulunmuyor.";
+            // Define positive & negative text
+            let positiveContent = news.news.positive || "No positive content available.";
+            let negativeContent = news.news.negative || "No negative content available.";
 
-            // Haber içeriğini ekle
+            // Add news content
             newsItem.innerHTML = `
                 <h3>${news.news.title}</h3>
                 <p>${news.news.summary}</p>
                 <p>${formatDate(news.news.date)}</p>
-                
-                <!-- Olumlu ve Negatif Sonuçlar -->
-                <div class="positive-negative-container">
-                    <p><span class="positive">Olumlu: </span> ${positive}</p>
-                    <p><span class="negative">Negatif: </span> ${negative}</p>
-                </div>
+                <div class="positive"><strong>Positive Insights:</strong><br> ${positiveContent}</div>
+                <div class="negative"><strong>Negative Insights:</strong><br> ${negativeContent}</div>
             `;
 
-            // Haber elemanını haber akışına ekle
+            // Append news item to news feed
             newsFeed.appendChild(newsItem);
         });
     } catch (error) {
-        console.error("Haberleri çekerken hata oluştu:", error);
+        console.error("Error fetching news:", error);
     }
 }
 
-// Tarihi 'Gün/Ay/Yıl' formatına dönüştürme fonksiyonu
+// Date Formatting
 function formatDate(timestamp) {
     const date = new Date(timestamp);
     const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Aylar 0'dan başlar, +1 eklenmeli
+    const month = String(date.getMonth() + 1).padStart(2, "0");
     const year = date.getFullYear();
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
@@ -51,5 +47,5 @@ function formatDate(timestamp) {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
-// Sayfa yüklendiğinde haberleri çek
+// Fetch news on page load
 fetchNews();

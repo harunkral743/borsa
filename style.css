@@ -1,35 +1,26 @@
-/* Genel Sayfa Stili */
+/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0A0A5A; /* StockTitan'a uygun koyu lacivert */
+    background-color: #0A0A5A; /* Dark navy blue */
     color: white;
     margin: 0;
     padding: 0;
 }
 
-/* Başlık Stili */
+/* Header */
 header {
     background-color: #000066;
     color: white;
     text-align: center;
     padding: 20px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
 }
 
-/* Google Translate Butonu */
-#google_translate_element {
-    display: inline-block;
-}
-
-/* Haber Alanı */
+/* News Container */
 #news-feed {
     margin: 20px auto;
-    width: calc(100vw - 10cm); /* Sağdan ve soldan 5 cm boşluk */
-    max-width: 1200px; /* Çok geniş ekranlarda maksimum genişlik */
-    min-width: 600px; /* Küçük ekranlarda bozulmaması için minimum genişlik */
+    width: calc(100% - 10cm);
+    max-width: 1200px;
+    min-width: 600px;
     padding: 20px;
     background-color: white;
     color: black;
@@ -37,43 +28,34 @@ header {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Haber Kartları */
+/* News Items */
 .news-item {
     padding: 15px;
-    border-bottom: 3px solid #0A0A5A; /* Lacivert ayrım çizgisi */
+    border-bottom: 3px solid #0A0A5A;
     background-color: #f9f9f9;
     border-radius: 8px;
     margin-bottom: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Pozitif ve Negatif Çerçeve Alanları */
-.positive-negative-container {
-    margin-top: 10px;
+/* Positive & Negative Box Styling */
+.positive, .negative {
     padding: 10px;
-    border-radius: 8px;
-    background-color: #f3f3f3;
-    border: 2px solid #ccc;
-}
-
-/* Pozitif ve Negatif Etiketleri */
-.positive {
-    background-color: #27ae60;
-    color: white;
-    padding: 5px;
     border-radius: 5px;
     font-weight: bold;
+    margin-top: 10px;
+}
+
+.positive {
+    background-color: #27ae60; /* Green */
+    color: white;
 }
 
 .negative {
-    background-color: #e74c3c;
+    background-color: #e74c3c; /* Red */
     color: white;
-    padding: 5px;
-    border-radius: 5px;
-    font-weight: bold;
 }
 
-/* Link Stili */
+/* Links */
 a {
     color: blue;
     text-decoration: none;
