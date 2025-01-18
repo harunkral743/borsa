@@ -35,30 +35,42 @@ header {
 /* Pozitif ve Negatif Bölmeler */
 .evaluation-container {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
     margin-top: 15px;
 }
 
+/* Pozitif ve Negatif Başlıkları */
+.evaluation-header {
+    font-weight: bold;
+    text-align: left;
+    padding: 5px 0;
+    font-size: 16px;
+}
+
+.positive-header {
+    color: green;
+}
+
+.negative-header {
+    color: red;
+}
+
+/* Pozitif ve Negatif Kutucukları */
 .evaluation-box {
-    flex: 1;
     padding: 15px;
     border-radius: 5px;
-    margin: 10px;
     background-color: #f5f5f5;
     color: black;
+    border: 2px solid #ddd;
 }
 
 .positive-box {
-    border: 2px solid green;
+    border-color: green;
 }
 
 .negative-box {
-    border: 2px solid red;
-}
-
-.evaluation-box h4 {
-    text-align: center;
-    font-weight: bold;
+    border-color: red;
 }
 
 .evaluation-box ul {

@@ -1,4 +1,4 @@
-// Haberleri StockTitan API'den çek (CORS hatasını önlemek için direkt API'den al)
+// Haberleri StockTitan API'den çek
 async function fetchNews() {
     const apiUrl = "https://stocktitan.net:11101/api/news/json?token=nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
 
@@ -11,12 +11,12 @@ async function fetchNews() {
         newsFeed.innerHTML = ""; // Önceki haberleri temizle
 
         for (const news of data) {
-            // **Haber detaylarını API'den çekiyoruz, CORS hatasını engelliyoruz**
-            const newsDetails = news.news.summary || "Haberin detayları mevcut değil.";
-            
-            // **Pozitif & Negatif Bölmeler**
-            const positiveContent = news.news.positive ? news.news.positive : ["Olumlu içerik bulunmamaktadır."];
-            const negativeContent = news.news.negative ? news.news.negative : ["Negatif içerik bulunmamaktadır."];
+            // **Haber detaylarını StockTitan’ın detay sayfasından al**
+            const newsDetails = news.news.details || "Haberin detayları mevcut değil.";
+
+            // **Pozitif & Negatif Bölmeler Birebir Alınacak**
+            const positiveContent = news.news.positive?.length > 0 ? news.news.positive : ["Olumlu içerik bulunmamaktadır."];
+            const negativeContent = news.news.negative?.length > 0 ? news.news.negative : ["Negatif içerik bulunmamaktadır."];
 
             // Yeni haber elemanı oluştur
             const newsItem = document.createElement("div");
@@ -29,13 +29,13 @@ async function fetchNews() {
                 <p>${formatDate(news.news.date)}</p>
 
                 <div class="evaluation-container">
+                    <h4 class="evaluation-header positive-header">Olumlu</h4>
                     <div class="evaluation-box positive-box">
-                        <h4>Olumlu</h4>
                         <ul>${positiveContent.map(item => `<li>${item}</li>`).join("")}</ul>
                     </div>
 
+                    <h4 class="evaluation-header negative-header">Negatif</h4>
                     <div class="evaluation-box negative-box">
-                        <h4>Negatif</h4>
                         <ul>${negativeContent.map(item => `<li>${item}</li>`).join("")}</ul>
                     </div>
                 </div>
