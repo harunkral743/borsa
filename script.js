@@ -7,16 +7,24 @@ async function fetchNews() {
         if (!response.ok) throw new Error("API isteği başarısız oldu");
 
         const data = await response.json();
+        console.log("StockTitan API Verisi:", data); // API’den gelen veriyi konsola yazdırıyoruz.
+
         const newsFeed = document.getElementById("news-feed");
         newsFeed.innerHTML = ""; // Önceki haberleri temizle
 
         for (const news of data) {
-            // **Haber detaylarını StockTitan’ın detay sayfasından al**
-            const newsDetails = news.news.details || "Haberin detayları mevcut değil.";
+            console.log("Tekil Haber Verisi:", news); // Her bir haber verisini ayrı ayrı yazdır
 
-            // **Pozitif & Negatif Bölmeler Birebir Alınacak**
-            const positiveContent = news.news.positive?.length > 0 ? news.news.positive : ["Olumlu içerik bulunmamaktadır."];
-            const negativeContent = news.news.negative?.length > 0 ? news.news.negative : ["Negatif içerik bulunmamaktadır."];
+            // **Haber detaylarını StockTitan’dan alırken en doğru key’i buluyoruz**
+            let newsDetails = news.news.details || news.news.full_text || news.news.body || "Haberin detayları API’den alınamadı.";
+
+            // **Pozitif & Negatif İçerikleri API’den doğru çektiğimizi doğruluyoruz**
+            const positiveContent = news.news.positive?.length > 0 ? news.news.positive : ["Olumlu içerik API’den alınamadı."];
+            const negativeContent = news.news.negative?.length > 0 ? news.news.negative : ["Negatif içerik API’den alınamadı."];
+
+            console.log("Haber Detayları:", newsDetails);
+            console.log("Pozitif İçerikler:", positiveContent);
+            console.log("Negatif İçerikler:", negativeContent);
 
             // Yeni haber elemanı oluştur
             const newsItem = document.createElement("div");
