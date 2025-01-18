@@ -1,4 +1,4 @@
-// Fetch news from StockTitan API
+// Haberleri StockTitan API'den çek
 async function fetchNews() {
     const apiUrl = "https://stocktitan.net:11101/api/news/json?token=nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
 
@@ -7,39 +7,44 @@ async function fetchNews() {
         const data = await response.json();
         
         const newsFeed = document.getElementById("news-feed");
-        newsFeed.innerHTML = ""; // Clear previous news
+        newsFeed.innerHTML = ""; // Önceki haberleri temizle
 
-        data.forEach(news => {
-            // Create a news element
+        for (const news of data) {
+            // Haber detaylarını ayrı çekmek için ilgili haberin URL'sine git
+            const detailsResponse = await fetch(news.news.url);
+            const detailsText = await detailsResponse.text();
+
+            // HTML içinden RHEA-AI ÖZETİ kısmını al
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(detailsText, "text/html");
+            const detailedContent = doc.querySelector(".rhea-ai-summary")?.innerText.trim() || "Detaylı içerik bulunamadı.";
+
+            // Yeni haber elemanı oluştur
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
 
-            // Define positive & negative text
-            let positiveContent = news.news.positive || "No positive content available.";
-            let negativeContent = news.news.negative || "No negative content available.";
-
-            // Add news content
+            // Haber içeriğini ekle (birebir RHEA-AI ÖZETİ'nden alındı)
             newsItem.innerHTML = `
                 <h3>${news.news.title}</h3>
-                <p>${news.news.summary}</p>
+                <p>${detailedContent}</p>
                 <p>${formatDate(news.news.date)}</p>
-                <div class="positive"><strong>Positive Insights:</strong><br> ${positiveContent}</div>
-                <div class="negative"><strong>Negative Insights:</strong><br> ${negativeContent}</div>
+                <div class="positive">Positive: ${news.news.positive || "No positive content available."}</div>
+                <div class="negative">Negative: ${news.news.negative || "No negative content available."}</div>
             `;
 
-            // Append news item to news feed
+            // Haber elemanını haber akışına ekle
             newsFeed.appendChild(newsItem);
-        });
+        }
     } catch (error) {
-        console.error("Error fetching news:", error);
+        console.error("Haberleri çekerken hata oluştu:", error);
     }
 }
 
-// Date Formatting
+// Tarih formatını gün/ay/yıl olarak dönüştür
 function formatDate(timestamp) {
     const date = new Date(timestamp);
     const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Aylar 0'dan başlar, +1 ekledik.
     const year = date.getFullYear();
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
@@ -47,5 +52,5 @@ function formatDate(timestamp) {
     return `${day}/${month}/${year} ${hours}:${minutes}`;
 }
 
-// Fetch news on page load
+// Sayfa yüklendiğinde haberleri çek
 fetchNews();
