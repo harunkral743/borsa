@@ -1,83 +1,86 @@
 /* Genel Sayfa Stili */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0A0A5A; /* StockTitan'a uygun koyu lacivert */
-    color: white;
+    background-color: #050A30; /* Daha koyu lacivert */
+    color: #FFFFFF; /* Beyaz yazılar */
     margin: 0;
     padding: 0;
 }
 
 /* Başlık Stili */
 header {
-    background-color: #000066;
+    background-color: #03051D; /* Daha koyu ton */
     color: white;
     text-align: center;
-    padding: 20px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px; /* Başlık ve Google Translate butonu arasındaki boşluk */
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 /* Haber Alanı */
 #news-feed {
     margin: 20px auto;
-    width: calc(100vw - 10cm); /* Sayfanın genişliğini al, sağdan ve soldan 5cm boşluk bırak */
-    max-width: 1200px; /* Çok geniş ekranlarda maksimum genişlik belirleyelim */
-    min-width: 600px; /* Küçük ekranlarda bozulmaması için minimum genişlik */
-    padding: 20px;
-    background-color: white;
-    color: black;
+    width: 90%; /* Sayfa genişliğine uyumlu */
+    max-width: 1000px; /* Maksimum genişlik */
+    background-color: #0D1224; /* Koyu gri-mavi ton */
+    color: #FFFFFF; /* Beyaz yazılar */
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Haber Kartları */
+.news-item {
+    padding: 20px;
+    background-color: #1C1F33; /* Daha koyu ton */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+}
+
+/* Haber Başlıkları */
+.news-item h3 {
+    font-size: 20px;
+    color: #FFD700; /* Altın rengi başlık */
+    margin-bottom: 10px;
+}
+
+/* Haber Metni */
+.news-item p {
+    font-size: 14px;
+    color: #FFFFFF; /* Beyaz yazılar */
 }
 
 /* Pozitif ve Negatif Bölmeler */
-.evaluation-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-/* Pozitif ve Negatif Başlıkları */
-.evaluation-header {
-    font-weight: bold;
-    text-align: left;
-    padding: 5px 0;
-    font-size: 16px;
-}
-
-.positive-header {
-    color: green;
-}
-
-.negative-header {
-    color: red;
-}
-
-/* Pozitif ve Negatif Kutucukları */
-.evaluation-box {
+.positive, .negative {
     padding: 15px;
     border-radius: 5px;
-    background-color: #f5f5f5;
-    color: black;
-    border: 2px solid #ddd;
+    margin-top: 10px;
+    font-weight: bold;
 }
 
-.positive-box {
-    border-color: green;
+.positive {
+    background-color: #004d00; /* Koyu yeşil */
+    color: #b9ffb9; /* Açık yeşil yazı */
 }
 
-.negative-box {
-    border-color: red;
+.negative {
+    background-color: #640000; /* Koyu kırmızı */
+    color: #ffb9b9; /* Açık kırmızı yazı */
 }
 
-.evaluation-box ul {
-    list-style: none;
-    padding-left: 0;
+/* Çizgi (Haberleri Ayıran) */
+.news-divider {
+    border-top: 2px solid #1C1F33; /* Koyu çizgi */
+    margin: 20px 0;
 }
 
-.evaluation-box ul li {
-    margin: 5px 0;
+/* Linkler */
+a {
+    color: #1E90FF; /* Mavi ton */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
