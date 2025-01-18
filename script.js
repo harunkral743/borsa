@@ -1,35 +1,42 @@
-// Haberleri StockTitan API'den çek
+// Haberleri StockTitan API'den çek (CORS hatasını önlemek için direkt API'den al)
 async function fetchNews() {
     const apiUrl = "https://stocktitan.net:11101/api/news/json?token=nNngJ0LgmazMiHUrBS77s2R19bG7P4T7AT1fUsTx4o1AZm576U1HHAMoV4IC";
 
     try {
         const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error("API isteği başarısız oldu");
+
         const data = await response.json();
-        
         const newsFeed = document.getElementById("news-feed");
         newsFeed.innerHTML = ""; // Önceki haberleri temizle
 
         for (const news of data) {
-            // Haber detaylarını ayrı çekmek için ilgili haberin URL'sine git
-            const detailsResponse = await fetch(news.news.url);
-            const detailsText = await detailsResponse.text();
-
-            // HTML içinden RHEA-AI ÖZETİ kısmını al
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(detailsText, "text/html");
-            const detailedContent = doc.querySelector(".rhea-ai-summary")?.innerText.trim() || "Detaylı içerik bulunamadı.";
+            // **Haber detaylarını API'den çekiyoruz, CORS hatasını engelliyoruz**
+            const newsDetails = news.news.summary || "Detaylı içerik bulunamadı.";
+            
+            // **Pozitif & Negatif Bölmeler**
+            const positiveContent = news.news.positive || ["Olumlu içerik bulunmamaktadır."];
+            const negativeContent = news.news.negative || ["Negatif içerik bulunmamaktadır."];
 
             // Yeni haber elemanı oluştur
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
 
-            // Haber içeriğini ekle (birebir RHEA-AI ÖZETİ'nden alındı)
+            // Haber içeriğini ekle
             newsItem.innerHTML = `
                 <h3>${news.news.title}</h3>
-                <p>${detailedContent}</p>
+                <p>${newsDetails}</p>
                 <p>${formatDate(news.news.date)}</p>
-                <div class="positive">Positive: ${news.news.positive || "No positive content available."}</div>
-                <div class="negative">Negative: ${news.news.negative || "No negative content available."}</div>
+
+                <div class="evaluation-box positive-box">
+                    <h4>Olumlu</h4>
+                    <ul>${positiveContent.map(item => `<li>${item}</li>`).join("")}</ul>
+                </div>
+
+                <div class="evaluation-box negative-box">
+                    <h4>Negatif</h4>
+                    <ul>${negativeContent.map(item => `<li>${item}</li>`).join("")}</ul>
+                </div>
             `;
 
             // Haber elemanını haber akışına ekle
