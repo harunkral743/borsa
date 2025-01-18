@@ -1,26 +1,30 @@
-/* General Page Styling */
+/* Genel Sayfa Stili */
 body {
     font-family: Arial, sans-serif;
-    background-color: #0A0A5A; /* Dark navy blue */
+    background-color: #0A0A5A; /* StockTitan'a uygun koyu lacivert */
     color: white;
     margin: 0;
     padding: 0;
 }
 
-/* Header */
+/* Başlık Stili */
 header {
     background-color: #000066;
     color: white;
     text-align: center;
     padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Başlık ve Google Translate butonu arasındaki boşluk */
 }
 
-/* News Container */
+/* Haber Alanı */
 #news-feed {
     margin: 20px auto;
-    width: calc(100% - 10cm);
-    max-width: 1200px;
-    min-width: 600px;
+    width: calc(100vw - 10cm); /* Sayfanın genişliğini al, sağdan ve soldan 5cm boşluk bırak */
+    max-width: 1200px; /* Çok geniş ekranlarda maksimum genişlik belirleyelim */
+    min-width: 600px; /* Küçük ekranlarda bozulmaması için minimum genişlik */
     padding: 20px;
     background-color: white;
     color: black;
@@ -28,40 +32,40 @@ header {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* News Items */
-.news-item {
+/* Pozitif ve Negatif Bölmeler */
+.evaluation-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.evaluation-box {
+    flex: 1;
     padding: 15px;
-    border-bottom: 3px solid #0A0A5A;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-
-/* Positive & Negative Box Styling */
-.positive, .negative {
-    padding: 10px;
     border-radius: 5px;
-    font-weight: bold;
-    margin-top: 10px;
+    margin: 10px;
+    background-color: #f5f5f5;
+    color: black;
 }
 
-.positive {
-    background-color: #27ae60; /* Green */
-    color: white;
+.positive-box {
+    border: 2px solid green;
 }
 
-.negative {
-    background-color: #e74c3c; /* Red */
-    color: white;
+.negative-box {
+    border: 2px solid red;
 }
 
-/* Links */
-a {
-    color: blue;
-    text-decoration: none;
+.evaluation-box h4 {
+    text-align: center;
     font-weight: bold;
 }
 
-a:hover {
-    text-decoration: underline;
+.evaluation-box ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.evaluation-box ul li {
+    margin: 5px 0;
 }

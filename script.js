@@ -12,11 +12,11 @@ async function fetchNews() {
 
         for (const news of data) {
             // **Haber detaylarını API'den çekiyoruz, CORS hatasını engelliyoruz**
-            const newsDetails = news.news.summary || "Detaylı içerik bulunamadı.";
+            const newsDetails = news.news.summary || "Haberin detayları mevcut değil.";
             
             // **Pozitif & Negatif Bölmeler**
-            const positiveContent = news.news.positive || ["Olumlu içerik bulunmamaktadır."];
-            const negativeContent = news.news.negative || ["Negatif içerik bulunmamaktadır."];
+            const positiveContent = news.news.positive ? news.news.positive : ["Olumlu içerik bulunmamaktadır."];
+            const negativeContent = news.news.negative ? news.news.negative : ["Negatif içerik bulunmamaktadır."];
 
             // Yeni haber elemanı oluştur
             const newsItem = document.createElement("div");
@@ -28,14 +28,16 @@ async function fetchNews() {
                 <p>${newsDetails}</p>
                 <p>${formatDate(news.news.date)}</p>
 
-                <div class="evaluation-box positive-box">
-                    <h4>Olumlu</h4>
-                    <ul>${positiveContent.map(item => `<li>${item}</li>`).join("")}</ul>
-                </div>
+                <div class="evaluation-container">
+                    <div class="evaluation-box positive-box">
+                        <h4>Olumlu</h4>
+                        <ul>${positiveContent.map(item => `<li>${item}</li>`).join("")}</ul>
+                    </div>
 
-                <div class="evaluation-box negative-box">
-                    <h4>Negatif</h4>
-                    <ul>${negativeContent.map(item => `<li>${item}</li>`).join("")}</ul>
+                    <div class="evaluation-box negative-box">
+                        <h4>Negatif</h4>
+                        <ul>${negativeContent.map(item => `<li>${item}</li>`).join("")}</ul>
+                    </div>
                 </div>
             `;
 
