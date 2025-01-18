@@ -3,9 +3,11 @@ async function fetchStockPrice(symbol) {
     const alphaVantageAPI = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=DEMO_KEY`;
     const polygonAPI = `https://api.polygon.io/v2/aggs/ticker/${symbol}/prev?apiKey=DEMO_KEY`;
 
+    const corsProxy = "https://cors-anywhere.herokuapp.com/";
+
     const fetchFromAPI = async (url, source) => {
         try {
-            const response = await fetch(url);
+            const response = await fetch(corsProxy + url);
             const data = await response.json();
             if (data && Object.keys(data).length > 0) {
                 return { data, source };
@@ -38,17 +40,21 @@ async function fetchStockPrice(symbol) {
 
 // API'den gelen veriyi işleyerek hisse fiyatını çıkarma fonksiyonu
 function parseStockPrice(response) {
-    if (response.source === "Yahoo Finance") {
-        return response.data.chart.result[0].meta.regularMarketPrice;
-    } else if (response.source === "Alpha Vantage") {
-        return parseFloat(response.data["Global Quote"]["05. price"]);
-    } else if (response.source === "Polygon.io") {
-        return response.data.results[0].c;
+    try {
+        if (response.source === "Yahoo Finance") {
+            return response.data.chart.result[0].meta.regularMarketPrice;
+        } else if (response.source === "Alpha Vantage") {
+            return parseFloat(response.data["Global Quote"]["05. price"]);
+        } else if (response.source === "Polygon.io") {
+            return response.data.results[0].c;
+        }
+    } catch (error) {
+        console.error("Hisse fiyatı çıkarılırken hata oluştu:", error);
     }
     return null;
 }
 
-// Örnek kullanım
+// **Örnek kullanım**
 fetchStockPrice("AAPL").then(price => {
     if (price !== null) {
         console.log(`Apple'ın Güncel Hisse Fiyatı: $${price}`);
