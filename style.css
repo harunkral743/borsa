@@ -51,12 +51,21 @@ header {
     color: #FFFFFF; /* Beyaz yazılar */
 }
 
+/* Olumlu ve Negatif Bölmeleri Yan Yana */
+.positive-negative-container {
+    display: flex;
+    justify-content: space-between; /* Yan yana ve aralarında mesafe bırak */
+    gap: 20px; /* Kutular arasında boşluk */
+    margin-top: 15px;
+}
+
 /* Pozitif ve Negatif Bölmeler */
 .positive, .negative {
+    flex: 1; /* İki bölmenin eşit genişlikte olmasını sağla */
     padding: 15px;
     border-radius: 5px;
-    margin-top: 10px;
     font-weight: bold;
+    text-align: center;
 }
 
 .positive {
