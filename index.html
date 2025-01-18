@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock Market News</title>
+    <title>Borsa Haberleri</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Stock Market News</h1>
+        <h1>Borsa Haberleri</h1>
+        <div id="google_translate_element"></div>
     </header>
 
     <section id="news-feed">
-        <!-- News will be dynamically added here -->
+        <!-- Haberler buraya yüklenecek -->
     </section>
 
     <script src="script.js"></script>
+
+    <!-- Google Çeviri API -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
