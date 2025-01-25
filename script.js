@@ -10,10 +10,14 @@ async function fetchNews() {
             const newsItem = document.createElement("div");
             newsItem.classList.add("news-item");
 
+            // Haber etiketlerini göster
+            const tagsHTML = news.tags.map(tag => `<span class="news-tag">${tag}</span>`).join(" ");
+
             newsItem.innerHTML = `
                 <h3><a href="${news.link}" target="_blank">${news.title}</a></h3>
-                <p><strong>Tarih:</strong> ${news.date}</p>
                 <p><strong>Şirket:</strong> ${news.company}</p>
+                <p><strong>Tarih:</strong> ${news.date}</p>
+                <p><strong>Etiketler:</strong> ${tagsHTML}</p>
             `;
 
             newsFeed.appendChild(newsItem);
